@@ -1,0 +1,20 @@
+package com.revature.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.revature.models.User;
+import com.revature.util.HibernateUtil;
+
+public class UserDao {
+	public int insert(User user) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction();
+		int pk = (int) ses.save(user);
+		
+		tx.commit();
+		
+		return pk;
+	}
+
+}
